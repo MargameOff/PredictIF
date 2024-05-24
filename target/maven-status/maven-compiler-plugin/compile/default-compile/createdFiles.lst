@@ -2,6 +2,7 @@ fr\insalyon\dasi\dasi\predictif\metier\modele\Spirite_.class
 fr\insalyon\dasi\dasi\predictif\metier\modele\Client.class
 fr\insalyon\dasi\dasi\predictif\metier\modele\Medium.class
 fr\insalyon\dasi\dasi\predictif\dao\MediumDAO.class
+fr\insalyon\dasi\dasi\predictif\metier\service\ServiceStats.class
 fr\insalyon\dasi\dasi\predictif\metier\modele\Employe_.class
 fr\insalyon\dasi\dasi\predictif\metier\modele\Personne_.class
 fr\insalyon\dasi\dasi\predictif\metier\service\ServiceAuth.class

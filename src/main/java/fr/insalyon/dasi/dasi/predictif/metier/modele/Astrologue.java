@@ -36,6 +36,11 @@ public class Astrologue extends Medium {
         return promotion;
     }
 
+    @Override
+    public String toString() {
+        return "Astrologue{" + "formation=" + formation + ", promotion=" + promotion + '}';
+    }
+
     public void setFormation(String formation) {
         this.formation = formation;
     }
@@ -43,4 +48,5 @@ public class Astrologue extends Medium {
     public void setPromotion(int promotion) {
         this.promotion = promotion;
     }
+    
 }

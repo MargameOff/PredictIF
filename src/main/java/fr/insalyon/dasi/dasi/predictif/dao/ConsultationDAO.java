@@ -5,7 +5,10 @@
  */
 package fr.insalyon.dasi.dasi.predictif.dao;
 
+import fr.insalyon.dasi.dasi.predictif.metier.modele.Client;
 import fr.insalyon.dasi.dasi.predictif.metier.modele.Consultation;
+import fr.insalyon.dasi.dasi.predictif.metier.modele.Employe;
+import fr.insalyon.dasi.dasi.predictif.metier.modele.Medium;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -32,5 +35,26 @@ public class ConsultationDAO {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Consultation> query = em.createQuery("SELECT c FROM CONSULTATION c", Consultation.class);
         return query.getResultList();
+    }
+    
+    public List<Consultation> findByClient(Client client) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.client = :client", Consultation.class);
+        query.setParameter("client", client);
+        return query.getResultList();
+    }
+    
+        public Long countByMedium(Medium medium) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM Consultation c WHERE c.medium = :medium", Long.class);
+        query.setParameter("medium", medium);
+        return query.getSingleResult();
+    }
+
+    public Long countClientsByEmploye(Employe employe) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(DISTINCT c.client) FROM Consultation c WHERE c.employe = :employe", Long.class);
+        query.setParameter("employe", employe);
+        return query.getSingleResult();
     }
 }

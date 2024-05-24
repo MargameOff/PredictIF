@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 public class Employe extends Personne {
     @Column(nullable = false)
-    private String Genre;
+    private String genre;
     @Column(nullable = false)
     private boolean estDisponible;
 
@@ -23,14 +23,16 @@ public class Employe extends Personne {
         this.estDisponible = true;
     }
 
-    public Employe(String Genre, String nom, String prenom, String mail, String telephone, Date dateNaissance) {
+    public Employe(String genre, String nom, String prenom, String mail, String telephone, Date dateNaissance) {
         super(nom, prenom, mail, telephone, dateNaissance);
-        this.Genre = Genre;
+        this.genre = genre;
         this.estDisponible = true;
     }
-
+    public void setEstDisponible(boolean estDispo){
+        this.estDisponible = estDispo;
+}
     public String getGenre() {
-        return Genre;
+        return genre;
     }
     
 }

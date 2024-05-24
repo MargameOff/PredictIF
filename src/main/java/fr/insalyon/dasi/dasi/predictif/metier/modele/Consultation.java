@@ -1,46 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.insalyon.dasi.dasi.predictif.metier.modele;
 
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- *
- * @author qsaillard
- */
 @Entity
 public class Consultation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     private String commentaire;
+    
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateRdv;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Client client;
 
-   
+    @Override
+    public String toString() {
+        return "Consultation{" + "id=" + id + ", commentaire=" + commentaire + ", dateRdv=" + dateRdv + ", client=" + client + ", employe=" + employe + ", medium=" + medium + '}';
+    }
+
+    @ManyToOne
     private Employe employe;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Medium medium;
+    
+    private boolean terminee;
 
     public Consultation() {
+        this.terminee = false;
     }
-    
+
     public Consultation(Date dateRdv, Medium med, Client cli) {
         this.dateRdv = dateRdv;
         this.medium = med;
         this.client = cli;
+        this.terminee = false;
     }
 
     public String getCommentaire() {
@@ -53,6 +55,14 @@ public class Consultation {
 
     public Date getDateRdv() {
         return dateRdv;
+    }
+
+    public boolean isTerminee() {
+        return terminee;
+    }
+
+    public void setTerminee(boolean terminee) {
+        this.terminee = terminee;
     }
 
     public Long getId() {

@@ -17,6 +17,7 @@ public class Client extends Personne {
 
     @Column(nullable = false)
     private String password;
+    private String adresse;
     private Double latitude;
     private Double longitude;
     private String signeZodiaque;
@@ -76,15 +77,24 @@ public class Client extends Personne {
     public String getAnimalTotem() {
         return AnimalTotem;
     }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
     
     public Client() {
     }
 
-    public Client(String nom, String prenom, String mail, String telephone, Date dateNaissance, String password) {
+    public Client(String nom, String prenom, String mail, String telephone, Date dateNaissance, String password, String adresse) {
         super(nom, prenom, mail, telephone, dateNaissance);
         this.password = password;
         this.latitude = null;
         this.longitude = null;
+        this.adresse = adresse;
     }
 
     @Override

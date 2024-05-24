@@ -37,4 +37,11 @@ public class MediumDAO {
     public Medium findById(Long idMedium) {
         return JpaUtil.obtenirContextePersistance().find(Medium.class, idMedium);
     }
+    
+    public List<Medium> findTop5ByConsultations() {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Medium> query = em.createQuery("SELECT m FROM Medium m ORDER BY (SELECT COUNT(c) FROM Consultation c WHERE c.medium = m)", Medium.class);
+        query.setMaxResults(5);
+        return query.getResultList();
+    }
 }

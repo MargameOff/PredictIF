@@ -13,7 +13,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import util.AstroNetApi;
+import util.GeoNetApi;
 import util.Message;
+import com.google.maps.model.*;
 
 /**
  *
@@ -129,6 +131,9 @@ public class ServiceAuth {
             client.setSigneAstroChinois(profil.get(1));
             client.setCouleurPorteBonheur(profil.get(2));
             client.setAnimalTotem(profil.get(3));
+            LatLng coordsEtablissement = GeoNetApi.getLatLng(client.getAdresse());
+            client.setLatitude(coordsEtablissement.lat);
+            client.setLongitude(coordsEtablissement.lng);
             clientDAO.create(client);
             JpaUtil.validerTransaction();
             System.out.println("Trace : succès création employé : " + client);
